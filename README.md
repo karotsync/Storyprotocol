@@ -70,9 +70,11 @@ wget -O $HOME/.story/story/config/genesis.json https://server-3.itrocket.net/tes
 wget -O $HOME/.story/story/config/addrbook.json  https://server-3.itrocket.net/testnet/story/addrbook.json
 ```
 
-# set custom ports in story.toml file
+**set custom ports in story.toml file**
+```
 sed -i.bak -e "s%:1317%:${STORY_PORT}317%g;
 s%:8551%:${STORY_PORT}551%g" $HOME/.story/story/config/story.toml
+```
 
 # set custom ports in config.toml file
 sed -i.bak -e "s%:26658%:${STORY_PORT}658%g;
