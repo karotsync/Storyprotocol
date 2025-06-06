@@ -240,3 +240,4 @@ sudo rm /etc/systemd/system/story.service /etc/systemd/system/story-geth.service
 sudo systemctl daemon-reload
 Add project introduction
 Add key features overview
+Include installation steps
