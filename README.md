@@ -241,3 +241,4 @@ sudo systemctl daemon-reload
 Add project introduction
 Add key features overview
 Include installation steps
+Add quick start guide
