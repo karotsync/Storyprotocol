@@ -242,3 +242,4 @@ Add project introduction
 Add key features overview
 Include installation steps
 Add quick start guide
+Document core functions
