@@ -244,3 +244,4 @@ Include installation steps
 Add quick start guide
 Document core functions
 Add data processing examples
+Add performance tips
