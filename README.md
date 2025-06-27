@@ -247,3 +247,4 @@ Add data processing examples
 Add performance tips
 Include dependency details
 Add testing instructions
+Document configuration options
