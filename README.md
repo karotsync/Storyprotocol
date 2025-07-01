@@ -248,3 +248,4 @@ Add performance tips
 Include dependency details
 Add testing instructions
 Document configuration options
+Add contributing guidelines
