@@ -249,3 +249,4 @@ Include dependency details
 Add testing instructions
 Document configuration options
 Add contributing guidelines
+Include code of conduct
