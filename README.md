@@ -130,34 +130,45 @@ WantedBy=multi-user.target
 EOF
 ```
 
-# download snapshots
-# backup priv_validator_state.json
+**download snapshots**
+**backup priv_validator_state.json**
+```
 cp $HOME/.story/story/data/priv_validator_state.json $HOME/.story/story/priv_validator_state.json.backup
+```
 
-# remove old data and unpack Story snapshot
+**remove old data and unpack Story snapshot**
+```
 rm -rf $HOME/.story/story/data
 curl https://server-3.itrocket.net/testnet/story/story_2024-11-27_874712_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story/story
+```
 
-# restore priv_validator_state.json
+**restore priv_validator_state.json**
+```
 mv $HOME/.story/story/priv_validator_state.json.backup $HOME/.story/story/data/priv_validator_state.json
+```
 
-# delete geth data and unpack Geth snapshot
+**delete geth data and unpack Geth snapshot**
+```
 rm -rf $HOME/.story/geth/odyssey/geth/chaindata
 mkdir -p $HOME/.story/geth/odyssey/geth
 curl https://server-3.itrocket.net/testnet/story/geth_story_2024-11-27_874712_snap.tar.lz4 | lz4 -dc - | tar -xf - -C $HOME/.story/geth/odyssey/geth
+```
 
-# enable and start geth, story
+**enable and start geth, story**
+```
 sudo systemctl daemon-reload
 sudo systemctl enable story story-geth
 sudo systemctl restart story-geth && sleep 5 && sudo systemctl restart story
+```
 
-# check logs
+**check logs**
+```
 journalctl -u story -u story-geth -f
-Automatic Installation
-source <(curl -s https://itrocket.net/api/testnet/story/story-autoinstall/)
-Cosmovisor Setup
-Install go, if needed:
+```
 
+**Cosmovisor Setup**
+Install go, if needed:
+```
 cd $HOME
 VER="1.22.3"
 wget "https://golang.org/dl/go$VER.linux-amd64.tar.gz"
@@ -168,18 +179,24 @@ rm "go$VER.linux-amd64.tar.gz"
 echo "export PATH=$PATH:/usr/local/go/bin:~/go/bin" >> ~/.bash_profile
 source $HOME/.bash_profile
 [ ! -d ~/go/bin ] && mkdir -p ~/go/bin
-Install and init Cosmovisor:
+```
 
+**Install and init Cosmovisor:**
+```
 go install cosmossdk.io/tools/cosmovisor/cmd/cosmovisor@latest
 echo "export DAEMON_NAME="story"" >> $HOME/.bash_profile
 echo "export DAEMON_HOME="$HOME/.story/story"" >> $HOME/.bash_profile
 source $HOME/.bash_profile
 cosmovisor init $(which story)
-Create a directory and download the current version of story:
+```
 
+**Create a directory and download the current version of story:**
+```
 mkdir -p $HOME/.story/story/cosmovisor/upgrades/v0.12.1/bin
 wget -O $HOME/.story/story/cosmovisor/upgrades/v0.12.1/bin/story https://github.com/piplabs/story/releases/download/v0.12.1/story-linux-amd64
 chmod +x $HOME/.story/story/cosmovisor/upgrades/v0.12.1/bin/story
+```
+
 Update service file:
 
 sudo tee /etc/systemd/system/story.service > /dev/null << EOF
