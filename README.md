@@ -245,26 +245,41 @@ story validator export --export-evm-key
 ```
 cat $HOME/.story/story/config/private_key.txt
 ```
+
 Use this private key to import your account into a wallet, e.g. Metamask or Phantom. Add the odyssey testnet to your wallet via faucet. Then, copy your 'EVM address' from the wallet and request $IP tokens. Now you can see the balance and make transactions in the wallet app.
 
 Before creating a validator, wait for your node to get fully synced. Once "catching_up" is "false", move on to the next step
+
+```
 curl localhost:$(sed -n '/\[rpc\]/,/laddr/ { /laddr/ {s/.*://; s/".*//; p} }' $HOME/.story/story/config/config.toml)/status | jq
-Create validator
+```
+
+**Create validator**
+```
 story validator create --stake 1500000000000000000000 --moniker $MONIKER --chain-id 1516 --private-key $(cat $HOME/.story/story/config/private_key.txt | grep "PRIVATE_KEY" | awk -F'=' '{print $2}')
+```
+
 Remember to backup your validator priv_key from here:
-
+```
 cat $HOME/.story/story/config/priv_validator_key.json
-Firewall rules
-Configure firewall rules:
+```
 
+**Firewall rules**
+Configure firewall rules:
+```
 sudo ufw allow 30303/tcp comment geth_p2p_port
 sudo ufw allow 26656/tcp comment story_p2p_port
-Delete node
+```
+
+**Delete node**
+```
 sudo systemctl stop story story-geth
 sudo systemctl disable story story-geth
 rm -rf $HOME/.story
 sudo rm /etc/systemd/system/story.service /etc/systemd/system/story-geth.service
 sudo systemctl daemon-reload
+```
+
 Add project introduction
 Add key features overview
 Include installation steps
