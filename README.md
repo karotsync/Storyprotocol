@@ -41,7 +41,7 @@ mv $HOME/geth ~/go/bin/
 ```
 
 **install Story**
-``
+```
 cd $HOME
 rm -rf story
 git clone https://github.com/piplabs/story
