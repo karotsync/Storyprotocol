@@ -251,3 +251,4 @@ Document configuration options
 Add contributing guidelines
 Include code of conduct
 Add FAQ for common issues
+Document versioning strategy
