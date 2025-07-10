@@ -197,8 +197,8 @@ wget -O $HOME/.story/story/cosmovisor/upgrades/v0.12.1/bin/story https://github.
 chmod +x $HOME/.story/story/cosmovisor/upgrades/v0.12.1/bin/story
 ```
 
-Update service file:
-
+**Update service file:**
+```
 sudo tee /etc/systemd/system/story.service > /dev/null << EOF
 [Unit]
 Description=story node service
@@ -219,22 +219,32 @@ LimitNOFILE=65535
 [Install]
 WantedBy=multi-user.target
 EOF
-Enable and start Story using Cosmovisor:
+```
 
+**Enable and start Story using Cosmovisor:**
+```
 sudo systemctl daemon-reload
 sudo systemctl enable story
 sudo systemctl restart story && sudo journalctl -u story -f
+```
+
 Congrats, you are now using Cosmovisor! 🎊
-Create validator
+
+**Create validator**
 View your validator key
-
+```
 story validator export
-Export EVM private key
+```
 
+**Export EVM private key**
+```
 story validator export --export-evm-key
-View EVM private key and make a key backup
+```
 
+**View EVM private key and make a key backup**
+```
 cat $HOME/.story/story/config/private_key.txt
+```
 Use this private key to import your account into a wallet, e.g. Metamask or Phantom. Add the odyssey testnet to your wallet via faucet. Then, copy your 'EVM address' from the wallet and request $IP tokens. Now you can see the balance and make transactions in the wallet app.
 
 Before creating a validator, wait for your node to get fully synced. Once "catching_up" is "false", move on to the next step
